@@ -18,25 +18,24 @@ const glove = document.querySelector('.infinity_glove');
 const userAnswer = {name:"",avengers: {avengerOne:"",avengerTow:""}};
 let isHulk = false
 let counterCorrectAvengers = 0;
+let matchFound = 0
+
 
 function renewUserAnswer() {
+    if(!isHulk){
+        document.getElementById(userAnswer.avengers.avengerOne).style.backgroundColor = "initial";
+        document.getElementById(userAnswer.avengers.avengerTow).style.backgroundColor = "initial";
+    }else{
+        document.getElementById(userAnswer.avengers.avengerOne).style.backgroundColor = "initial";
+    }
     counterCorrectAvengers=0
     userAnswer.name="";
     userAnswer.avengers.avengerOne="";
     userAnswer.avengers.avengerTow="";
     isHulk = false;
+
 }
 
-function noneDisplayElements(){
-    if(!isHulk){
-        document.getElementById(userAnswer.name).style.display = "none";
-        document.getElementById(userAnswer.avengers.avengerOne).style.display = "none";
-        document.getElementById(userAnswer.avengers.avengerTow).style.display = "none";
-    }else{
-        document.getElementById(userAnswer.name).style.display = "none";
-        document.getElementById(userAnswer.avengers.avengerOne).style.display = "none";
-    }
-}
 
 function onGloveClicked(target){
     counterCorrectAvengers = 0
@@ -48,7 +47,7 @@ function onGloveClicked(target){
                     counterCorrectAvengers++;                    
                 }else{
                     renewUserAnswer();
-                    alert("The attempt failed because there was no match between the Avengers and Stone try again");
+                    alert("The attempt failed because there was no match between the Avengers and Stone try again If you continue like this half of life in the universe will be destroyed");
                 }
             });
         }
@@ -58,9 +57,14 @@ function onGloveClicked(target){
     }else{
         alert("first you have to choose atlist tow avngers and one infinity stone");
     }
-    if(counterCorrectAvengers === 2){
-        noneDisplayElements();
+    if(counterCorrectAvengers === 2 && matchFound < 5){
+        alert("Congratulations match found");
+        matchFound++
+        document.getElementById(userAnswer.name).style.display = "none";
         renewUserAnswer();
+    }else{
+        alert("You saved the universe");
+        window.location.reload();
     }
 }
 
@@ -70,6 +74,7 @@ function onStoneClicked(target){
     }else{
         alert("A stone has already been selected");
     }
+    target.currentTarget.style.backgroundColor = "gold"
 }
 
 function onAvengerClicked(target){
@@ -80,6 +85,7 @@ function onAvengerClicked(target){
     }else{
         alert("An avengers has already been selected");
     }
+    target.currentTarget.style.backgroundColor = "gold"
 }
 
 
