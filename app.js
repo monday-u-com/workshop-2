@@ -56,14 +56,17 @@ function onGloveClicked(target){
         counterCorrectAvengers = 2;
     }else{
         alert("first you have to choose atlist tow avngers and one infinity stone");
+        renewUserAnswer();
     }
     if(counterCorrectAvengers === 2 && matchFound < 5){
-        alert("Congratulations match found");
+        alert("match found. keep that way you can save the univers!");
         matchFound++
         document.getElementById(userAnswer.name).style.display = "none";
         renewUserAnswer();
-    }else{
-        alert("You saved the universe");
+    }else if (matchFound < 6){
+        alert("Thanos won! hlaf of the univers is destroyed!")
+    }else if(matchFound === 6) {
+        alert("Congratulations! You saved the universe.");
         window.location.reload();
     }
 }
@@ -71,21 +74,43 @@ function onGloveClicked(target){
 function onStoneClicked(target){
     if(!userAnswer.name){
         userAnswer.name = target.currentTarget.id;
+        target.currentTarget.style.backgroundColor = "gold";
     }else{
-        alert("A stone has already been selected");
+        if(userAnswer.name === target.currentTarget.id){
+            target.currentTarget.style.backgroundColor = "";
+            userAnswer.name = "";
+
+        }else{
+            target.currentTarget.style.backgroundColor = "gold";
+            document.getElementById(userAnswer.name).style.backgroundColor = "";
+            userAnswer.name = target.currentTarget.id;        
+        }
     }
-    target.currentTarget.style.backgroundColor = "gold"
 }
 
 function onAvengerClicked(target){
     if(!userAnswer.avengers.avengerOne){
         userAnswer.avengers.avengerOne = target.currentTarget.id;
-    }else if(!userAnswer.avengers.avengerTow){
+        target.currentTarget.style.backgroundColor = "gold";
+
+    }else if(!userAnswer.avengers.avengerTow && userAnswer.avengers.avengerOne != target.currentTarget.id){
         userAnswer.avengers.avengerTow = target.currentTarget.id;
+        target.currentTarget.style.backgroundColor = "gold";
+
+    }else if (userAnswer.avengers.avengerOne === target.currentTarget.id || userAnswer.avengers.avengerTow === target.currentTarget.id){
+        if(target.currentTarget.id === userAnswer.avengers.avengerOne){
+            document.getElementById(userAnswer.avengers.avengerOne).style.backgroundColor = "";
+            userAnswer.avengers.avengerOne = "";
+        
+        }else if(target.currentTarget.id === userAnswer.avengers.avengerTow){
+            document.getElementById(userAnswer.avengers.avengerTow).style.backgroundColor = "";
+            userAnswer.avengers.avengerTow = "";
+        };
+        
     }else{
         alert("An avengers has already been selected");
+        return;
     }
-    target.currentTarget.style.backgroundColor = "gold"
 }
 
 
