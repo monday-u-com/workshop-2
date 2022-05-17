@@ -86,9 +86,7 @@ function onClickAvenger(target) {
 }
 
 function checkForMatch() {
-  console.log(currentStoneId);
   if (isErrorExsit()) {
-    // if there is no error and the user choose right amount of both stone and heroes
     resetClickedTags();
     return;
   }
@@ -220,38 +218,3 @@ function markMatchStone() {
 function uodateMatchStones() {
   stoneFound += 1;
 }
-
-// function addTag() {
-//   const img = document.createElement("img");
-//   const div = document.createElement("div");
-//   div.innerText;
-//   img.src = "assets/gif/hand_click.gif";
-//   div.className = "pop_up";
-
-//   div.appendChild(img);
-//   document.body.appendChild(div);
-// }
-
-// let x = document.querySelectorAll(".cd__headline");
-// let article_list = [];
-// let link;
-// let title;
-// for (let i = 0; i < x.length; i++) {
-//   link = x[i].querySelector("a").href;
-//   title = x[i].textContent;
-//   article_list.push([title, link]);
-// }
-
-// document.body.innerHTML = "";
-
-// const ul = document.createElement("ul");
-// document.body.appendChild(ul);
-// article_list.forEach((article) => {
-//   const li = document.createElement("li");
-//   ul.appendChild(li);
-//   const a = document.createElement("a");
-//   a.innerText = "* " + article[0];
-//   a.href = article[1];
-//   li.appendChild(a);
-// });
-// document.body.appendChild(ul);
